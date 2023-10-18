@@ -1,0 +1,27 @@
+.customListBox ol {
+    list-style-type: upper-alpha;
+    position: relative;
+    counter-reset: lists; /* Reset the 'lists' counter for each top-level ol */
+}
+
+.customListBox ol li {
+    list-style-type: none;
+    counter-increment: lists;
+}
+
+.customListBox ol li::before {
+    content: counters(lists, "", decimal) "." counters(items, "", decimal) " ";
+    counter-reset: items; /* Reset the 'items' counter for each top-level li */
+    counter-increment: items;
+    position: absolute;
+    left: 0;
+}
+
+.customListBox ol li ol {
+    counter-reset: items; /* Reset the 'items' counter for each nested ol */
+}
+
+.customListBox ol li ol li::before {
+    content: counters(lists, "", decimal) "." counters(items, "", decimal) " ";
+    counter-increment: items;
+}
